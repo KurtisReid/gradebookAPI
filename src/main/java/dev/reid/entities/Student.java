@@ -1,7 +1,5 @@
 package dev.reid.entities;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity

@@ -10,19 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class GradeRepoTests {
-
-    /*
-
     @Autowired
     GradeRepo gradeRepo;
     @Test
     public void create_grade()
     {
-
         Grade grade = new Grade(1,1,1010, "bad student", Behavior.EVIL);
         Grade savedGrade = this.gradeRepo.save(grade);
         Assertions.assertNotEquals(0, savedGrade.getgId());
     }
-    */
+
 
 }

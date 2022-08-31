@@ -10,7 +10,7 @@ public interface GradeService {
 
     List<Grade> getGradesById(Grade grade, int id);
 
-    boolean deleteGrade(int id);
+    boolean deleteGradeById(int id);
 
 
 }
