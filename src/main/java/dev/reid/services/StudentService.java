@@ -8,5 +8,5 @@ public interface StudentService {
 
     Student getStudentByName(String firstName);
 
-    Boolean deleteStudent(int id);
+    boolean deleteStudent(int id);
 }
