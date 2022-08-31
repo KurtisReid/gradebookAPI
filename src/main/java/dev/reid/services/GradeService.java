@@ -1,4 +1,4 @@
 package dev.reid.services;
 
-public class GradeService {
+public interface GradeService {
 }
