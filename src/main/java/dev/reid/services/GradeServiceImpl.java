@@ -22,7 +22,7 @@ public class GradeServiceImpl implements GradeService{
     }
 
     @Override
-    public List<Grade> getGradesById(Grade grade, int id) {
+    public List<Grade> getGradesByStudentId(int id) {
 
         List <Grade> list = this.gradeRepo.getByStudentId(id);
         return list;
@@ -31,9 +31,11 @@ public class GradeServiceImpl implements GradeService{
 
     @Override
     public boolean deleteGradeById(int id) {
-
-        this.gradeRepo.deleteById(id);
-
-        return true;
+        if(this.gradeRepo.existsById(id)){
+            this.gradeRepo.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 }
