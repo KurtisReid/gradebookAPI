@@ -23,12 +23,17 @@ public class GradeServiceImpl implements GradeService{
 
     @Override
     public List<Grade> getGradesById(Grade grade, int id) {
+
         List <Grade> list = this.gradeRepo.getByStudentId(id);
         return list;
+
     }
 
     @Override
     public boolean deleteGradeById(int id) {
-        return false;
+
+        this.gradeRepo.deleteById(id);
+
+        return true;
     }
 }
