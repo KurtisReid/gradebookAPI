@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student addStudent(Student student) {
-        if(student.getFirstName() == null){
+        if(student.getFirstName().length() >0){
             throw new RuntimeException("Must enter a first name");
         }
         if(student.getLastName() == null){
