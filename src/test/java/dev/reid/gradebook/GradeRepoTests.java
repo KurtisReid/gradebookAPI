@@ -17,6 +17,7 @@ public class GradeRepoTests {
     @Test
     public void create_grade()
     {
+        // hello
         Grade grade = new Grade(1,1,1010, "bad student", Behavior.EVIL);
         Grade savedGrade = this.gradeRepo.save(grade);
         Assertions.assertNotEquals(0, savedGrade.getgId());
