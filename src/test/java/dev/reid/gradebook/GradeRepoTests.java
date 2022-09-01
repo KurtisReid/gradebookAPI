@@ -26,7 +26,7 @@ public class GradeRepoTests {
     public void get_grades_by_sId(){
         Grade grade = new Grade(1,1,1010, "bad student", Behavior.EVIL);
         Grade savedGrade = this.gradeRepo.save(grade);
-        List<Grade> grades = this.gradeRepo.getByStudentID(1);
+        List<Grade> grades = this.gradeRepo.getByStudentId(1);
         System.out.println(grades);
     }
 

@@ -23,7 +23,7 @@ public class GradeServiceImpl implements GradeService{
 
     @Override
     public List<Grade> getGradesById(Grade grade, int id) {
-        List <Grade> list = this.gradeRepo.getByStudentID(id);
+        List <Grade> list = this.gradeRepo.getByStudentId(id);
         return list;
     }
 
