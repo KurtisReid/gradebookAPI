@@ -17,7 +17,7 @@ public class StudentRepoTests {
     {
         Student student = new Student(0,"kh", "rg", "GU");
         Student savedStudent = this.studentRepo.save(student);
-        Assertions.assertEquals(1, savedStudent.getId());
+        Assertions.assertNotEquals(0, savedStudent.getId());
         System.out.println(savedStudent);
     }
 
