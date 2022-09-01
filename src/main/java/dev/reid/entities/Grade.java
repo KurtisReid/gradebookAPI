@@ -12,7 +12,7 @@ public class Grade {
     private int gId;
 
     @Column(name = "s_Id")
-    private int sId;
+    private int studentID;
 
     @Column(name = "time_Reported")
     private long timeReported;
@@ -28,7 +28,7 @@ public class Grade {
 
     public Grade(int gId, int sId, long timeReported, String note, Behavior behavior) {
         this.gId = gId;
-        this.sId = sId;
+        this.studentID = sId;
         this.timeReported = timeReported;
         this.note = note;
         this.behavior = behavior;
@@ -42,12 +42,12 @@ public class Grade {
         this.gId = gId;
     }
 
-    public int getsId() {
-        return sId;
+    public int getStudentID() {
+        return studentID;
     }
 
-    public void setsId(int sId) {
-        this.sId = sId;
+    public void setStudentID(int studentID) {
+        this.studentID = studentID;
     }
 
     public long getTimeReported() {
@@ -78,7 +78,7 @@ public class Grade {
     public String toString() {
         return "Grade{" +
                 "gId=" + gId +
-                ", sId=" + sId +
+                ", sId=" + studentID +
                 ", timeReported=" + timeReported +
                 ", note='" + note + '\'' +
                 ", behavior=" + behavior +
