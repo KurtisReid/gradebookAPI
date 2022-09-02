@@ -17,14 +17,18 @@ public class GradeServiceImpl implements GradeService{
 
     @Override
     public Grade createGrade(Grade grade) {
-        //System.out.println(grade);
+        if (grade == null) {
+            throw new RuntimeException("No Grade found");
+        }
         return this.gradeRepo.save(grade);
     }
 
     @Override
     public List<Grade> getGradesByStudentId(int id) {
-
-        List <Grade> list = this.gradeRepo.getByStudentId(id);
+        if(!gradeRepo.existsById(id)){
+            throw new RuntimeException("No student with id "+ id);
+        }
+        List<Grade> list = this.gradeRepo.getByStudentId(id);
         return list;
 
     }
