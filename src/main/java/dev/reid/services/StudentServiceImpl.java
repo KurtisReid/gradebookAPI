@@ -1,6 +1,9 @@
 package dev.reid.services;
 
 import dev.reid.entities.Student;
+import dev.reid.exceptions.NoFirstNameException;
+import dev.reid.exceptions.NoLastNameException;
+import dev.reid.exceptions.NoStudentFoundException;
 import dev.reid.repos.StudentRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,7 +39,7 @@ public class StudentServiceImpl implements StudentService{
             return possibleStudent.get();
         }else{
             this.logger.error("A student could not be found with id " + id);
-            throw new RuntimeException("No student found");
+            throw new NoStudentFoundException("No student found");
         }
     }
 
