@@ -3,6 +3,9 @@ package dev.reid.controllers;
 import com.google.gson.Gson;
 import dev.reid.entities.Grade;
 import dev.reid.entities.Student;
+import dev.reid.exceptions.NoFirstNameException;
+import dev.reid.exceptions.NoLastNameException;
+import dev.reid.exceptions.NoStudentFoundException;
 import dev.reid.services.StudentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,8 +34,10 @@ public class StudentController {
         try{
             Student savedStudent = this.studentService.addStudent(student);
             return new ResponseEntity<>(this.gson.toJson(savedStudent), HttpStatus.CREATED);
-        }catch(RuntimeException e){
+        }catch(NoFirstNameException e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+        }catch(NoLastNameException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -44,7 +49,7 @@ public class StudentController {
         try{
             Student returnStudent = this.studentService.getStudentById(studentId);
             return new ResponseEntity<>(this.gson.toJson(returnStudent), HttpStatus.CONTINUE);
-        }catch(RuntimeException e){
+        }catch(NoStudentFoundException e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
