@@ -2,6 +2,7 @@ package dev.reid.controllers;
 
 import com.google.gson.Gson;
 import dev.reid.entities.Grade;
+import dev.reid.exceptions.EmptyGradeException;
 import dev.reid.services.GradeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +31,7 @@ public class GradesController {
         try{
             Grade savedGrade = this.gradeService.createGrade(grade);
             return new ResponseEntity<>(this.gson.toJson(savedGrade), HttpStatus.CREATED);
-        }catch(RuntimeException e){
+        }catch(EmptyGradeException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
