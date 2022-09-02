@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = {"dev.reid.entities"})
 @EnableJpaRepositories(basePackages = {"dev.reid.repos"})
 public class GradebookApplication {
-
+	//I'm testing github
 	public static void main(String[] args) {
 		SpringApplication.run(GradebookApplication.class, args);
 	}
