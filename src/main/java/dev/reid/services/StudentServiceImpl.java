@@ -23,11 +23,11 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student addStudent(Student student) {
-        if(student.getFirstName().length() >0){
-            throw new NoFirstNameException("Must enter a first name");
+        if(student.getFirstName().length() == 0){
+            throw new RuntimeException("Must enter a first name");
         }
-        if(student.getLastName() == null){
-            throw new NoLastNameException("Must enter a last name");
+        if(student.getLastName().length() == 0){
+            throw new RuntimeException("Must enter a last name");
         }
         return this.studentRepo.save(student);
     }
