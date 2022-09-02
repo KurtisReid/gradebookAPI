@@ -25,11 +25,11 @@ public class GradeServiceImpl implements GradeService{
 
     @Override
     public List<Grade> getGradesByStudentId(int id) {
+        //check for student id as a foreign key in grade repo
         if(!gradeRepo.existsById(id)){
             throw new RuntimeException("No student with id "+ id);
         }
-        List<Grade> list = this.gradeRepo.getByStudentId(id);
-        return list;
+        return this.gradeRepo.getByStudentId(id);
 
     }
 
