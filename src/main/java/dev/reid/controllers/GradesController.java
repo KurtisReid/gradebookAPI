@@ -2,6 +2,7 @@ package dev.reid.controllers;
 
 import com.google.gson.Gson;
 import dev.reid.entities.Grade;
+import dev.reid.entities.Student;
 import dev.reid.services.GradeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,10 +38,10 @@ public class GradesController {
 
     @GetMapping("/grades/{id}")
     @ResponseBody
-    public ResponseEntity<String> getGradeByStudentId(@PathVariable String id){
+    public ResponseEntity<String> getGradeByStudentId(@PathVariable Student id){
         logger.info("GET grade by id request");
-        int studentId = Integer.parseInt(id);
-        List<Grade> returnGrades = this.gradeService.getGradesByStudentId(studentId);
+        //int studentId = Integer.parseInt(id);
+        List<Grade> returnGrades = this.gradeService.getGradesByStudentId(id);
         return new ResponseEntity<>(this.gson.toJson(returnGrades), HttpStatus.CONTINUE);
     }
 

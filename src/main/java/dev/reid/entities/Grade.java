@@ -1,5 +1,7 @@
 package dev.reid.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,8 +13,10 @@ public class Grade {
     @Column(name = "g_Id")
     private int gId;
 
-    @Column(name = "s_Id")
-    private int studentId;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "s_Id")
+    private Student studentId;
 
     @Column(name = "time_Reported")
     private long timeReported;
@@ -26,7 +30,7 @@ public class Grade {
     public Grade() {
     }
 
-    public Grade(int gId, int sId, long timeReported, String note, Behavior behavior) {
+    public Grade(int gId, Student sId, long timeReported, String note, Behavior behavior) {
         this.gId = gId;
         this.studentId = sId;
         this.timeReported = timeReported;
@@ -42,11 +46,11 @@ public class Grade {
         this.gId = gId;
     }
 
-    public int getStudentId() {
+    public Student getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(Student studentId) {
         this.studentId = studentId;
     }
 
@@ -73,6 +77,8 @@ public class Grade {
     public void setBehavior(Behavior behavior) {
         this.behavior = behavior;
     }
+
+
 
     @Override
     public String toString() {

@@ -1,6 +1,11 @@
 package dev.reid.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
@@ -19,6 +24,11 @@ public class Student {
     @Column(name = "guardian_username")
     private String guardianUsername;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "s_Id")
+    @JsonManagedReference
+    private Set<Grade> grades;
+
     public Student() {
     }
 
@@ -27,6 +37,14 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.guardianUsername = guardianUsername;
+    }
+
+    public Student(int id, String firstName, String lastName, String guardianUsername, Set<Grade> grades) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.guardianUsername = guardianUsername;
+        this.grades = grades;
     }
 
     public int getId() {
@@ -59,6 +77,14 @@ public class Student {
 
     public void setGuardianUsername(String guardianUsername) {
         this.guardianUsername = guardianUsername;
+    }
+
+    public Set<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(Set<Grade> grades) {
+        this.grades = grades;
     }
 
     @Override

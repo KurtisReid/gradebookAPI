@@ -1,6 +1,7 @@
 package dev.reid.services;
 
 import dev.reid.entities.Grade;
+import dev.reid.entities.Student;
 import dev.reid.repos.GradeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,9 @@ public class GradeServiceImpl implements GradeService{
     }
 
     @Override
-    public List<Grade> getGradesByStudentId(int id) {
+    public List<Grade> getGradesByStudentId(Student id) {
 
-        List <Grade> list = this.gradeRepo.getByStudentId(id);
+        List <Grade> list = this.gradeRepo.findGradesByStudentId(id);
         return list;
 
     }
