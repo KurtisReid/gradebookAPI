@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@CrossOrigin
 public class GradesController {
 
     Logger logger = LogManager.getLogger(GradesController.class);
@@ -23,6 +24,7 @@ public class GradesController {
 
     @Autowired
     GradeService gradeService;
+
 
     @PostMapping("/grades")
     @ResponseBody
@@ -33,6 +35,7 @@ public class GradesController {
 
     }
 
+
     @GetMapping("/grades/{id}")
     @ResponseBody
     public List<Grade> getGradeByStudentId(@PathVariable Student id){
@@ -42,6 +45,7 @@ public class GradesController {
         return returnGrades;
     }
 
+
     @GetMapping("/grades")
     @ResponseBody
     public ResponseEntity<String> getAllGrades(){
@@ -49,12 +53,14 @@ public class GradesController {
         return new ResponseEntity<>("Route unavailable", HttpStatus.CONTINUE);
     }
 
+
     @PutMapping("/grades")
     @ResponseBody
     public ResponseEntity<String> updateGrade(@RequestBody Grade grade){
         logger.info("PUT grade request");
         return new ResponseEntity<>("PUT request not available\nPlease delete and create new grade", HttpStatus.CONTINUE);
     }
+
 
     @DeleteMapping("/grades/{id}")
     @ResponseBody
