@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class StudentController {
 
     Logger logger = LogManager.getLogger(GradesController.class);
@@ -37,6 +38,7 @@ public class StudentController {
         return returnStudent;
 
     }
+
     @GetMapping("/students/byName/{name}")
     public List<Student> getStudentByName(@PathVariable String name){
         logger.info("Get student by name request");
@@ -55,6 +57,7 @@ public class StudentController {
     public String updateStudent(){
         return "PUT request not available\nPlease delete and create new student";
     }
+
 
     @DeleteMapping("/students/{id}")
     public String deleteStudent(@PathVariable String id){
