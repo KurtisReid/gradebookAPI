@@ -26,23 +26,19 @@ public class GradesController {
 
     @PostMapping("/grades")
     @ResponseBody
-    public ResponseEntity<String> createGrade(@RequestBody Grade grade){
+    public Grade createGrade(@RequestBody Grade grade){
         logger.info("POST grade request");
-        try{
-            Grade savedGrade = this.gradeService.createGrade(grade);
-            return new ResponseEntity<>(this.gson.toJson(savedGrade), HttpStatus.CREATED);
-        }catch(RuntimeException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+        Grade savedGrade = this.gradeService.createGrade(grade);
+        return savedGrade;
     }
 
     @GetMapping("/grades/{id}")
     @ResponseBody
-    public ResponseEntity<String> getGradeByStudentId(@PathVariable Student id){
+    public List<Grade> getGradeByStudentId(@PathVariable Student id){
         logger.info("GET grade by id request");
         //int studentId = Integer.parseInt(id);
         List<Grade> returnGrades = this.gradeService.getGradesByStudentId(id);
-        return new ResponseEntity<>(this.gson.toJson(returnGrades), HttpStatus.CONTINUE);
+        return returnGrades;
     }
 
     @GetMapping("/grades")
@@ -61,13 +57,13 @@ public class GradesController {
 
     @DeleteMapping("/grades/{id}")
     @ResponseBody
-    public ResponseEntity<String> deleteGrade(@PathVariable String id){
+    public String deleteGrade(@PathVariable String id){
         logger.info("DELETE grade request");
         int gradeId = Integer.parseInt(id);
         if(this.gradeService.deleteGradeById(gradeId)){
-            return new ResponseEntity<>("Grade with id: " +id+ " successfully deleted", HttpStatus.CONTINUE);
+            return "Grade with id: " +id+ " successfully deleted";
         }else{
-            return new ResponseEntity<>("Grade with id: " +id+ " not found", HttpStatus.NOT_FOUND);
+            return "Grade with id: " +id+ " not found";
         }
     }
 }
