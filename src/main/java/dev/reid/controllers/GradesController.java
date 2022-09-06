@@ -30,6 +30,7 @@ public class GradesController {
         logger.info("POST grade request");
         Grade savedGrade = this.gradeService.createGrade(grade);
         return savedGrade;
+
     }
 
     @GetMapping("/grades/{id}")
