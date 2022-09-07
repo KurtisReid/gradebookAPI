@@ -38,10 +38,10 @@ public class GradesController {
 
     @GetMapping("/grades/{id}")
     @ResponseBody
-    public List<Grade> getGradeByStudentId(@PathVariable Student id){
+    public List<Grade> getGradeByStudentId(@PathVariable String id){
         logger.info("GET grade by id request");
-        //int studentId = Integer.parseInt(id);
-        List<Grade> returnGrades = this.gradeService.getGradesByStudentId(id);
+        int studentId = Integer.parseInt(id);
+        List<Grade> returnGrades = this.gradeService.getGradesByStudentId(studentId);
         return returnGrades;
     }
 
