@@ -13,10 +13,8 @@ public class Grade {
     @Column(name = "g_Id")
     private int gId;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "s_Id")
-    private Student studentId;
+    @Column(name = "s_Id")
+    private int studentId;
 
     @Column(name = "time_Reported")
     private long timeReported;
@@ -30,9 +28,9 @@ public class Grade {
     public Grade() {
     }
 
-    public Grade(int gId, Student sId, long timeReported, String note, Behavior behavior) {
+    public Grade(int gId, int studentId, long timeReported, String note, Behavior behavior) {
         this.gId = gId;
-        this.studentId = sId;
+        this.studentId = studentId;
         this.timeReported = timeReported;
         this.note = note;
         this.behavior = behavior;
@@ -46,11 +44,11 @@ public class Grade {
         this.gId = gId;
     }
 
-    public Student getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Student studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
@@ -78,13 +76,11 @@ public class Grade {
         this.behavior = behavior;
     }
 
-
-
     @Override
     public String toString() {
         return "Grade{" +
                 "gId=" + gId +
-                ", sId=" + studentId +
+                ", studentId=" + studentId +
                 ", timeReported=" + timeReported +
                 ", note='" + note + '\'' +
                 ", behavior=" + behavior +
