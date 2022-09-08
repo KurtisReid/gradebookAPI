@@ -35,7 +35,9 @@ public class StudentServiceImpl implements StudentService{
             throw new RuntimeException("Must enter a last name");
 
         }
+
         String msg = "Student " + student + " was added";
+        System.out.println(msg);
         jmsTemplate.convertAndSend("message-queue", msg);
 
         return this.studentRepo.save(student);
@@ -65,6 +67,7 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public boolean deleteStudent(int id) {
         String msg = "Student " + getStudentById(id) + " was deleted";
+        System.out.println(msg);
         if(this.studentRepo.existsById(id)){
             this.studentRepo.deleteById(id);
 
