@@ -53,7 +53,8 @@ class GradebookApplicationTests {
 	@Test
 	void find_by_username()
 	{
-		Employee employee = employeeRepo.findByUsername("kurttest");
+		Employee employee = employeeRepo.findByUsername("kurtadmin");
+		System.out.println("hello " + employee);
 		Assertions.assertEquals("admin", employee.getRole());
 	}
 
