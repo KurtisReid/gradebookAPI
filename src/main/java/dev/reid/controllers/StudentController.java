@@ -1,6 +1,5 @@
 package dev.reid.controllers;
 
-import com.google.gson.Gson;
 import dev.reid.entities.Student;
 import dev.reid.services.StudentService;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +17,7 @@ public class StudentController {
 
     Logger logger = LogManager.getLogger(GradesController.class);
 
-    private Gson gson = new Gson();
+
 
     @Autowired
     StudentService studentService;

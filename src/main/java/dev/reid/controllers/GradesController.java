@@ -1,6 +1,6 @@
 package dev.reid.controllers;
 
-import com.google.gson.Gson;
+
 import dev.reid.entities.Grade;
 import dev.reid.entities.Student;
 import dev.reid.services.GradeService;
@@ -20,7 +20,7 @@ public class GradesController {
 
     Logger logger = LogManager.getLogger(GradesController.class);
 
-    private Gson gson = new Gson();
+
 
     @Autowired
     GradeService gradeService;

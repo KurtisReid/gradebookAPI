@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jms.core.JmsTemplate;
 
 import java.util.List;
 
@@ -20,8 +21,17 @@ class GradebookApplicationTests {
 	@Autowired
 	JwtService jwtService;
 
+	@Autowired
+	JmsTemplate jmsTemplate;
+
+
+
+
 	@Test
 	void contextLoads() {
+		String msg = "hello from gradebook";
+		jmsTemplate.convertAndSend("message-queue", msg);
+
 	}
 
 	@Test
