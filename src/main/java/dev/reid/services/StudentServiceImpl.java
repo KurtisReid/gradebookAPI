@@ -8,6 +8,7 @@ import dev.reid.repos.StudentRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService{
 
     Logger logger = LogManager.getLogger(StudentServiceImpl.class);
+
+    @Autowired
+    JmsTemplate jmsTemplate;
 
     @Autowired
     StudentRepo studentRepo;
@@ -31,6 +35,9 @@ public class StudentServiceImpl implements StudentService{
             throw new RuntimeException("Must enter a last name");
 
         }
+        String msg = "Student " + student + " was added";
+        jmsTemplate.convertAndSend("message-queue", msg);
+
         return this.studentRepo.save(student);
     }
 
@@ -57,8 +64,11 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public boolean deleteStudent(int id) {
+        String msg = "Student " + getStudentById(id) + " was deleted";
         if(this.studentRepo.existsById(id)){
             this.studentRepo.deleteById(id);
+
+            jmsTemplate.convertAndSend("message-queue", msg);
             return true;
         }else {
             return false;
