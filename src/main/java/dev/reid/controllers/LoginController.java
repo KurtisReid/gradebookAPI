@@ -21,7 +21,7 @@ public class LoginController {
     {
         System.out.println("login controller");
         String jw = loginService.authenticateUser(loginCredentials);
-        System.out.println(loginService.authenticateUser(loginCredentials));
+        System.out.println(jw);
 
         return jw;
     }

@@ -78,7 +78,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public boolean deleteStudent(int id) {
-        String msg = "Student " + getStudentById(id) + " was deleted";
+        String msg = "Student with id: " +id+ " was deleted";
         System.out.println(msg);
         if(this.studentRepo.existsById(id)){
             this.studentRepo.deleteById(id);

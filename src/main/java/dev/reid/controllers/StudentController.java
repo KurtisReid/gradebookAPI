@@ -45,6 +45,13 @@ public class StudentController {
         return returnStudents;
     }
 
+    @GetMapping("/students/byGuardian/{guardian}")
+    public List<Student> getStudentByGuardian(@PathVariable String guardian){
+        logger.info("Get student by name request");
+        List<Student> returnStudents = this.studentService.getStudentsByGuardian(guardian);
+        return returnStudents;
+    }
+
     @GetMapping("/students")
     public List<Student> getAllStudents(){
         logger.info("Get all student request");

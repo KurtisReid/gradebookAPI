@@ -84,9 +84,9 @@ public class GradesController {
         logger.info("DELETE grade request");
         int gradeId = Integer.parseInt(id);
         if(this.gradeService.deleteGradeById(gradeId)){
-            return new ResponseEntity<>("Grade with id: " +id+ " successfully deleted", HttpStatus.CONTINUE);
+            return new ResponseEntity<>("{\"Grade\":"+id+", \"Deleted\":true}", HttpStatus.CONTINUE);
         }else{
-            return new ResponseEntity<>("Grade with id: " +id+ " not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Grade\":"+id+", \"Deleted\": false}", HttpStatus.NOT_FOUND);
         }
     }
 }
