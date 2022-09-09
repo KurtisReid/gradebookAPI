@@ -10,6 +10,8 @@ public interface StudentService {
 
     Student getStudentById(int id);
 
+    List<Student> getStudentsByGuardian(String guardian);
+
     List<Student> getAllStudents();
 
     List<Student> getStudentByName(String firstName);
