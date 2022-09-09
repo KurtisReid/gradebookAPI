@@ -17,12 +17,12 @@ public class LoginController {
     LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginCredentials loginCredentials)
+    public String login(@RequestBody LoginCredentials loginCredentials)
     {
         System.out.println("login controller");
         String jw = loginService.authenticateUser(loginCredentials);
         System.out.println(loginService.authenticateUser(loginCredentials));
 
-        return new ResponseEntity<>(jw, HttpStatus.CONTINUE);
+        return jw;
     }
 }
