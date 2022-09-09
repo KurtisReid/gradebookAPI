@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,17 @@ public class StudentServiceImpl implements StudentService{
             return possibleStudent.get();
         }else{
             this.logger.error("A student could not be found with id " + id);
+            throw new NoStudentFoundException("No student found");
+        }
+    }
+
+    @Override
+    public List<Student> getStudentsByGuardian(String guardian) {
+        List<Student> possibleStudents = this.studentRepo.findByGuardianUsername(guardian);
+        if(!possibleStudents.isEmpty()){
+            return possibleStudents;
+        }else{
+            this.logger.error("A student could not be found with guardian: " + guardian);
             throw new NoStudentFoundException("No student found");
         }
     }

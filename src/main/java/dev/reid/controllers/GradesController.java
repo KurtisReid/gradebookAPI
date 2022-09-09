@@ -4,6 +4,7 @@ package dev.reid.controllers;
 import dev.reid.entities.Grade;
 import dev.reid.entities.Student;
 import dev.reid.services.GradeService;
+import dev.reid.services.StudentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,10 +22,11 @@ public class GradesController {
 
     Logger logger = LogManager.getLogger(GradesController.class);
 
-
-
     @Autowired
     GradeService gradeService;
+
+    @Autowired
+    StudentService studentService;
 
 
     @PostMapping("/grades")
@@ -42,6 +45,18 @@ public class GradesController {
         logger.info("GET grade by id request");
         int studentId = Integer.parseInt(id);
         List<Grade> returnGrades = this.gradeService.getGradesByStudentId(studentId);
+        return returnGrades;
+    }
+
+    @GetMapping("/grades/byGuardian/{guardian}")
+    @ResponseBody
+    public List<Grade> getGradeByGuardian(@PathVariable String guardian){
+        logger.info("GET grades by guardian request");
+        List<Student> students = this.studentService.getStudentsByGuardian(guardian);
+        List<Grade> returnGrades = new ArrayList<>();
+        for(Student s : students){
+            returnGrades.addAll(this.gradeService.getGradesByStudentId(s.getId()));
+        }
         return returnGrades;
     }
 
