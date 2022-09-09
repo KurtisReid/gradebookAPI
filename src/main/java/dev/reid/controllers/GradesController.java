@@ -50,14 +50,15 @@ public class GradesController {
 
     @GetMapping("/grades/byGuardian/{guardian}")
     @ResponseBody
-    public List<Grade> getGradeByGuardian(@PathVariable String guardian){
+    public List<List<Grade>> getGradeByGuardian(@PathVariable String guardian){
         logger.info("GET grades by guardian request");
         List<Student> students = this.studentService.getStudentsByGuardian(guardian);
-        List<Grade> returnGrades = new ArrayList<>();
+        List<List<Grade>> allGrades = new ArrayList<>();
         for(Student s : students){
-            returnGrades.addAll(this.gradeService.getGradesByStudentId(s.getId()));
+            List<Grade> studentGrades = this.gradeService.getGradesByStudentId(s.getId());
+            allGrades.add(studentGrades);
         }
-        return returnGrades;
+        return allGrades;
     }
 
 
@@ -79,13 +80,13 @@ public class GradesController {
 
     @DeleteMapping("/grades/{id}")
     @ResponseBody
-    public String deleteGrade(@PathVariable String id){
+    public ResponseEntity<String> deleteGrade(@PathVariable String id){
         logger.info("DELETE grade request");
         int gradeId = Integer.parseInt(id);
         if(this.gradeService.deleteGradeById(gradeId)){
-            return "Grade with id: " +id+ " successfully deleted";
+            return new ResponseEntity<>("Grade with id: " +id+ " successfully deleted", HttpStatus.CONTINUE);
         }else{
-            return "Grade with id: " +id+ " not found";
+            return new ResponseEntity<>("Grade with id: " +id+ " not found", HttpStatus.NOT_FOUND);
         }
     }
 }

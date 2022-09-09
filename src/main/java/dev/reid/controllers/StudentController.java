@@ -59,12 +59,12 @@ public class StudentController {
 
 
     @DeleteMapping("/students/{id}")
-    public String deleteStudent(@PathVariable String id){
+    public ResponseEntity<String> deleteStudent(@PathVariable String id){
         logger.info("Delete student request");
         int studentId = Integer.parseInt(id);
         if(this.studentService.deleteStudent(studentId)){
-            return "Student with id: " +id+ " successfully deleted";
+            return new ResponseEntity<>("Student with id: " +id+ " successfully deleted", HttpStatus.CONTINUE);
         }
-        return "Student with id: " +id+ " not found";
+        return new ResponseEntity<>("Student with id: " +id+ " not found", HttpStatus.NOT_FOUND);
     }
 }
